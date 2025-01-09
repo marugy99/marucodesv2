@@ -1,0 +1,16 @@
+---
+import Finder from "../../components/Finder.astro";
+import Layout from "../../layouts/Layout.astro";
+import Articles from "../../components/Articles.jsx";
+import { getCollection } from "astro:content";
+
+const journalEntries = await getCollection("journal");
+
+journalEntries.forEach((entry) => (entry.slug = `/journal/${entry.slug}`));
+---
+
+<Layout title="Maru's Journal" description="Maru's Journal">
+  <Finder activePage="journal">
+    <Articles items={journalEntries} view="list" client:load />
+  </Finder>
+</Layout>

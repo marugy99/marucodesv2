@@ -1,0 +1,17 @@
+---
+import Finder from "../components/Finder.astro";
+import Layout from "../layouts/Layout.astro";
+import Preview from "../components/Preview.jsx";
+import { getEntry, render } from "astro:content";
+
+const about = await getEntry("misc", "about");
+const { Content } = await render(about);
+---
+
+<Layout title="About Maru" description="About Maru">
+  <Finder activePage="about">
+    <Preview backLink="/" data={about.data} client:load>
+      <Content slot="content" />
+    </Preview>
+  </Finder>
+</Layout>

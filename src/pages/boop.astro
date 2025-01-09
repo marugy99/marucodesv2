@@ -1,0 +1,17 @@
+---
+import Finder from "../components/Finder.astro";
+import Layout from "../layouts/Layout.astro";
+import Preview from "../components/Preview.jsx";
+import { getEntry, render } from "astro:content";
+
+const boop = await getEntry("misc", "boop");
+const { Content } = await render(boop);
+---
+
+<Layout title="Boop" description="Boop">
+  <Finder activePage="about">
+    <Preview backLink="/" data={boop.data} client:load>
+      <Content slot="content" />
+    </Preview>
+  </Finder>
+</Layout>

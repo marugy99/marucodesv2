@@ -1,0 +1,14 @@
+---
+import Finder from "../components/Finder.astro";
+import Layout from "../layouts/Layout.astro";
+import Projects from "../components/Projects.jsx";
+import { getCollection } from "astro:content";
+
+const projectsData = await getCollection("projects");
+---
+
+<Layout title="Maru's Projects" description="Maru's Projects">
+  <Finder activePage="projects">
+    <Projects client:load projects={projectsData} />
+  </Finder>
+</Layout>

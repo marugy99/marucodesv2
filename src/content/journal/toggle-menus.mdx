@@ -1,0 +1,223 @@
+---
+title: "Accessible toggle menus with cool transitions"
+created_at: "11/01/2021"
+---
+
+import CodePen from "../../components/CodePen.jsx";
+
+Toggle menus are all over the internet and as a web dev you'll find yourself building a lot of these. There are a few things we need to take into account in order to create a nice and accessible toggle menu and in this post I'll share some tips I've learned that will hopefully help you next time you have to build one.
+
+Goals:
+
+- Create a menu that's accessible for keyboard users and screen readers.
+- Effectively show & hide the menu with a smooth transition to make it look professional 👩‍🎨.
+- I'll be using plain JavaScript to show & hide elements and CSS to add very simple styles. You can then apply these principles to your favorite framework.
+
+## HTML structure
+
+Let's start by creating the actual button and including an SVG icon to keep things simple. The aria attributes will help us make our menu accessible:
+
+- `aria-expanded` communicates the toggle state, without it, screen readers won't say anything different to the user, other than it's a regular button. We need to indicate that it's an expandable and collapsible area. Since the initial state of our menu is "closed", we're setting it to `false`. Once the menu is expanded, this will need to change.
+- Buttons must have discernible text and since we're using an SVG, we can add it using aria-label on the button itself. As stated in Sara Soueidan's blog about [Accessible Icon Buttons](https://www.sarasoueidan.com/blog/accessible-icon-buttons/):
+
+"When `aria-label` is used on a button, the contents of the attribute will override the contents inside the button as the accessible name. This means that, if you have an icon or even other text content inside your `<button>`, that content will no longer be announced as part of the button’s name."
+
+Special thanks to [Gary Byrne on Twitter](https://twitter.com/garybyrne1995), for sending me Sara's blog and for reminding me about the importance of discernible text on buttons.
+
+```html
+<button type="button" id="toggle-menu" aria-expanded="false" aria-label="Menu">
+  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" fill="#000000;">
+    <path d="M 2 5 L 2 7 L 22 7 L 22 5 L 2 5 z M 2 11 L 2 13 L 22 13 L 22 11 L 2 11 z M 2 17 L 2 19 L 22 19 L 22 17 L 2 17 z"
+    ></path>
+  </svg>
+</button>
+```
+
+Now, for the actual navigation menu, we'll have a nav tag and an unordered list (`ul`) with list items (`li`) that contain the links (`a`).
+
+```html
+<nav class="nav-menu">
+  <ul>
+    <li>
+      <a href="#">About</a>
+    </li>
+    <li>
+      <a href="#">Projects</a>
+    </li>
+    <li>
+      <a href="#">Contact</a>
+    </li>
+  </ul>
+</nav>
+```
+
+Note: thanks to [HTML recipes](https://htmlrecipes.dev/) I learned that, if you have more than one nav element in your website, it's recommended that you label them, in that way users of assistive technology can differentiate them. You can do this by using `aria-label`.
+
+## Initial styles
+
+I want to focus on the show & hide functionality and transition so the styles we'll be adding are very simple. First, let's add some initial styles:
+
+```css
+body {
+  font-family: monospace;
+  font-size: 1.5rem;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+  margin-top: 2rem;
+}
+
+ul {
+  padding-left: 0px;
+}
+```
+
+Great! Now, let's focus on our toggle by making the button and navigation menu look a little nicer:
+
+```css
+button {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: rgb(211, 211, 211);
+}
+
+button:active {
+  /* So we know when the button is being clicked */
+  background-color: rgb(182, 182, 182);
+}
+
+nav {
+  position: absolute;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: lightseagreen;
+}
+```
+This is what we have so far:
+
+<CodePen url="https://codepen.io/marugy99/embed/NWvwRdx?default-tab=result" />
+
+To illustrate things better, I'll be adding the properties in charge of the toggle to a different class, the one we added in the beginning: `nav-menu` (collapsed state). Additionally, we'll create a class called `expanded` (expanded state), which will be dynamically added with this short and sweet JavaScript event listener:
+
+```js
+const toggleMenuBtn = document.querySelector("#toggle-menu");
+const navMenu = document.querySelector("nav");
+
+toggleMenuBtn.addEventListener("click", function() { 
+  navMenu.classList.toggle("expanded");
+});
+```
+
+The first CSS property that comes to mind when you want to show & hide something is `display`, which makes perfect sense! Well, this caused me a lot of headaches in the past because I just wanted to toggle my menu and have a nice transition, but it wouldn't work 🤦🏻‍♀️. This is why it's so important to learn from my mistake and get in the habit of reading documentation.
+
+Display is one of the CSS properties that cannot be animated. In fact, it breaks the whole transition just by being there. Let's take a look at the following examples. In the first menu, we'll be adding a transition to the `opacity` property, which can be animated and in the second we're doing the same but we're also adding `display: none` and `display: block`
+
+Menu 1: cool transition 🤩
+
+```css
+.nav-menu {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.nav-menu.expanded {
+  opacity: 1;
+}
+```
+<CodePen url="https://codepen.io/marugy99/embed/WNEzJba?default-tab=result" />
+
+Menu 2: no transition at all 😢
+
+```css
+.nav-menu {
+  opacity: 0;
+  display: none;
+  transition: all 300ms ease-in-out;
+}
+
+.nav-menu.expanded {
+  opacity: 1;
+  display: block;
+}
+```
+<CodePen url="https://codepen.io/marugy99/embed/bGrvMNj?default-tab=result" />
+
+In our case, we can't just use `opacity` to hide our menu because even though it's no longer visible, it's taking the same space and we can still access the links by hovering over them or by pressing tab . We definitely don't want that.
+
+Introducing the `visibility` property. This property controls whether an element is visible or not and `visibility: hidden` does exactly what we want: it hides the element, its content (so keyboard users can't focus it when it's not visible) AND it can be animated 🎉.
+
+Now, let's change our `nav-menu` and `expanded` classes to this:
+
+```css
+.nav-menu {
+  /* Initial state */
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95); /* 95% */
+  transform-origin: top left;
+  transition: all 300ms ease-in-out;
+}
+
+.nav-menu.expanded {
+  /* Expanded state */
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1); /* 100% */
+}
+```
+- The opacity and visibility properties will effectively hide our menu from all users. These two are the only "mandatory" properties in our case.
+- To create a nicer transition, we can toggle between transform: scale(0.95) and transform: scale(1), which will make the navigation bar just 5% smaller in the beginning, and then it will have its full size.
+- According to MDN, "transform-origin sets the origin for an element's transition", so by setting it to top left we're changing the origin and the transition will start from there.
+- Remember to add the transition property to the "initial state" class so it works both ways.
+
+And now we have this cool effect:
+
+<CodePen url="https://codepen.io/marugy99/embed/XWaEqbW?default-tab=result" />
+
+Here's a full list of the [CSS properties that can be animated](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties).
+
+## Changing the aria-expanded value
+
+We added `aria-expanded="false"` to our toggle button because it's initially closed. Now, once it's open we need to communicate this change so screen readers know the difference and announce it to our users.
+
+Our final JS will look like this:
+
+```js
+const toggleMenuBtn = document.getElementById("toggle-menu");
+const navMenu = document.querySelector("nav");
+
+toggleMenuBtn.addEventListener("click", function() { 
+  navMenu.classList.toggle("expanded");
+
+  if (navMenu.classList.contains("expanded")) {
+    toggleMenuBtn.setAttribute("aria-expanded", "true");
+  } else {
+    toggleMenuBtn.setAttribute("aria-expanded", "false");
+  }
+});
+```
+
+Once our toggle button is clicked, it will:
+
+- Add & remove our `expanded` class.
+- If the nav menu contains the `expanded` class, it will set the `aria-expanded` attribute to `true` in our button, otherwise, it sets it to `false`.
+
+Here's the final CodePen, try using a screen reader to see it in action! If you're on Chrome, there's a nice [screen reader extension](https://chrome.google.com/webstore/detail/screen-reader/kgejglhpjiefppelpmljglcjbhoiplfn/related).
+
+<CodePen url="https://codepen.io/marugy99/embed/porLVJY?default-tab=result" />
+
+## Conclusion
+
+- Using `aria-expanded` allows us to communicate the toggle state so that screen readers can announce it.
+- Buttons must have a discernible name and if we're using an SVG we can use `aria-label` to add it.
+- Having a CSS property that can't be animated breaks the whole transition, even if the rest of the properties can be animated.
+- To effectively hide an interactive element from the screen, we need to make sure that users can't access it when it's not visible.
+- Accessibility rules! 🤘
