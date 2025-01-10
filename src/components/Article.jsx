@@ -1,12 +1,11 @@
 import React, { useRef } from "react";
 import Draggable from "react-draggable";
-import FileIcon from "./FileIcon.jsx";
 import { DocumentIcon } from "@heroicons/react/24/solid";
 
 function FileContent({ title }) {
   return (
     <>
-      <FileIcon />
+      <img draggable="false" src="/file-white.svg" alt="File icon"></img>
       <span className="inline-block mt-1 text-sm text-center text-gray-100 sm:text-base max-w-[100px] truncate">
         {title}
       </span>
@@ -22,30 +21,35 @@ export default function Article({ link, title, date, viewType = "icon" }) {
       {viewType === "icon" ? (
         <Draggable
           nodeRef={nodeRef}
+          cancel="#link"
           handle="#draggableElement"
           onDrag={() => setIsDragging(true)}
           onStop={() => setIsDragging(false)}
         >
-          {isDragging ? (
-            <div
-              id="draggableElement"
-              ref={nodeRef}
-              href={link}
-              className="flex flex-col p-1 w-max"
-            >
-              <FileContent title={title} />
+          <div ref={nodeRef} className="relative group">
+            <div aria-label="Move element" className="hidden md:block">
+              <span
+                id="draggableElement"
+                className="absolute hidden w-6 h-6 rounded-full cursor-move bg-slate-900 -top-2 -left-2 place-items-center group-hover:grid"
+              >
+                <img
+                  draggable="false"
+                  src="/move-icon.svg"
+                  alt="File icon"
+                  className="w-4"
+                ></img>
+              </span>
             </div>
-          ) : (
             <a
-              id="draggableElement"
-              ref={nodeRef}
               href={link}
               aria-label={`Go to ${title}`}
-              className="flex flex-col p-1 w-max hover:bg-slate-600 hover:rounded-md"
+              className={`flex flex-col p-1 w-max group-hover:bg-slate-600 group-hover:rounded-md ${
+                isDragging ? "bg-slate-600 rounded-md" : ""
+              }`}
             >
               <FileContent title={title} />
             </a>
-          )}
+          </div>
         </Draggable>
       ) : (
         <a

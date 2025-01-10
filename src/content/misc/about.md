@@ -4,7 +4,7 @@ alternativeTitle: "Maru"
 created_at: "01/02/2025"
 ---
 
-I'm a **self-taught frontend developer** who loves bringing ideas to life in the form of beautiful, accessible and user-friendly web apps. I'm currently working as a full-time developer at [Castos](https://castos.com/), a podcast hosting platform.
+I'm a **self-taught frontend developer** who loves bringing ideas to life in the form of beautiful, accessible and user-friendly web apps. I'm currently working as a full-time developer at <a target="_blank" href="https://castos.com/">Castos</a>, a podcast hosting platform.
 
 I like to write about my experience working as a dev, about what I'm learning and occasional personal stuff.
 

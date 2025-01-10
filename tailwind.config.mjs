@@ -47,6 +47,7 @@ export default {
               maxWidth: "32rem",
               marginLeft: "auto",
               marginRight: "auto",
+              width: "100%",
             },
           },
         },
