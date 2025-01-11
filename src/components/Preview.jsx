@@ -50,7 +50,7 @@ export default function Preview({ data, content, backLink }) {
             <a
               href={backLink}
               aria-label="Back"
-              className="p-1 rounded-md text-slate-500 hover:text-slate-400 hover:bg-slate-700"
+              className="rounded-md sm:p-1 text-slate-500 hover:text-slate-400 hover:bg-slate-700"
             >
               <ChevronLeftIcon className="w-7 h-7" />
             </a>

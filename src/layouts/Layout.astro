@@ -1,5 +1,9 @@
 ---
-const { title, description } = Astro.props;
+const {
+  title = "Maru Lucena",
+  description = "I'm Maru, a frontend developer based in Portugal who enjoys coding, reading and learning new things.",
+  ogType = "website",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -10,16 +14,35 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link
       rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💾</text></svg>"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📁</text></svg>"
     />
-
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta
+      property="og:url"
+      content={"https://marucodes.com" + Astro.url.pathname}
+    />
+    <meta
+      property="og:image"
+      content="https://marucodes.com/marucodes-card.png"
+    />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:image"
+      content="https://marucodes.com/marucodes-card.png"
+    />
+    <meta property="twitter:site" content="@marulucenat" />
     <script></script>
   </head>
   <body class="overflow-hidden bg-gradient-to-r from-blue-500 to-violet-900">
     <main
-      class="relative flex items-center justify-center w-full max-w-[60rem] min-h-screen p-4 mx-auto"
+      class="relative flex items-center justify-center w-full max-w-[60rem] h-screen min-h-screen p-4 sm:p-8 mx-auto"
     >
       <slot />
     </main>

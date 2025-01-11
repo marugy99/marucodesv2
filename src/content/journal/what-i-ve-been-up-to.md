@@ -1,6 +1,7 @@
 ---
 title: "What I've been up to"
 created_at: "06/27/2022"
+description: "A life update!"
 ---
 
 A lot of things have happened in the last 5 months. Here’s a life update!

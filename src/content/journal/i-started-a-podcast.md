@@ -1,6 +1,7 @@
 ---
 title: "I started a podcast"
 created_at: "05/09/2023"
+description: "I know. Shocking."
 ---
 
 The title of this post seems to be a very common phrase nowadays, and I'm actually really glad podcasts are so popular now because audio is one of my favorite forms of content. I know this will sound too sentimental but I think there’s something magical about audio content, about letting your mind paint a picture based on what you’re hearing and just letting the narrator guide you.

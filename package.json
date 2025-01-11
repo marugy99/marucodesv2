@@ -10,12 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/alpinejs": "^0.4.1",
     "@astrojs/mdx": "^4.0.3",
     "@astrojs/react": "^4.1.2",
     "@astrojs/tailwind": "^5.1.4",
     "@heroicons/react": "^2.2.0",
+    "@types/alpinejs": "^3.13.11",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "alpinejs": "^3.14.8",
     "astro": "^5.1.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

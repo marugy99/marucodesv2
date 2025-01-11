@@ -7,7 +7,7 @@ import { getCollection, render } from "astro:content";
 export async function getStaticPaths() {
   const journalEntries = await getCollection("journal");
   return journalEntries.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.slug, title: post.data.title },
     props: { post },
   }));
 }
@@ -16,8 +16,8 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout title="Maru's Journal" description="Maru's Journal">
-  <Finder activePage="journal">
+<Layout title={post.data.title} description={post.data.description}>
+  <Finder>
     <Preview backLink="/journal" data={post.data} client:load>
       <Content slot="content" />
     </Preview>

@@ -1,12 +1,25 @@
-// 1. Import utilities from `astro:content`
 import { defineCollection, z } from "astro:content";
 
-// 3. Define your collection(s)
-const journal = defineCollection({});
+const journal = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    created_at: z.string(),
+    description: z.string(),
+  }),
+});
 
-const projects = defineCollection({});
+const projects = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    site: z.string(),
+    repo: z.string(),
+    stack: z.string(),
+    description: z.string(),
+    link: z.string(),
+    created_at: z.string(),
+  }),
+});
 
 const misc = defineCollection({});
 
-// 4. Export a single `collections` object to register your collection(s)
 export const collections = { journal, projects, misc };

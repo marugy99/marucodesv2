@@ -1,6 +1,7 @@
 ---
 title: "Misconceptions & Asynchronous JavaScript"
 created_at: "05/04/2023"
+description: "I realized that knowledge gaps are not necessarily the stuff you don’t know but also the stuff you think you know and it’s not exactly accurate."
 ---
 
 In the process of trying to identify my knowledge gaps I’ve realized that many of the coding misconceptions I used to have go way back from when I first started to learn how code. There were many things I interpreted in the wrong way when I was first being introduced to a lot of new concepts, which is totally normal because at that stage you just don’t have enough context.

@@ -57,9 +57,9 @@ export default function Article({ link, title, date, viewType = "icon" }) {
           aria-label={`Go to ${title}`}
           className="flex flex-col justify-between w-full gap-2 p-2 rounded-md md:items-center md:flex-row bg-slate-700 hover:bg-slate-600"
         >
-          <div className="flex items-center gap-2">
-            <DocumentIcon className="w-4 h-4" />
-            <span className="line-clamp-1">{title}</span>
+          <div className="flex items-baseline gap-2">
+            <DocumentIcon className="w-4 h-4 shrink-0" />
+            <span className="line-clamp-2">{title}</span>
           </div>
           {date && (
             <span className="text-sm text-slate-400">

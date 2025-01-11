@@ -1,6 +1,7 @@
 ---
 title: "17 months working as a developer"
 created_at: "01/15/2023"
+description: "A little bit of my experience and the things I've learned while being part of an engineering team for 17 months."
 ---
 
 Back in December 2021 I wrote "4 months working as a developer" which is a blog I'm very proud of, as it has some good personal reminders. Now I'd like to make an update on my experience because to this date I've been working as a front-end developer for 17 months (time flies, I know) and oh boy, I've learned so much during this time.

@@ -1,6 +1,7 @@
 ---
 title: "I completed a course"
 created_at: "03/23/2023"
+description: "Spoiler alert: I actually completed two and I'm proud of myself."
 ---
 
 In the programming world there are so many things to learn and so many courses out there, it's really easy to start one and then never finish it, or buy a ton and never even start them lol. I'm guilty of both.

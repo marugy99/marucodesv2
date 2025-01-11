@@ -1,6 +1,7 @@
 ---
 title: "4 months working as a developer"
 created_at: "12/01/2021"
+description: "A little bit of my experience and the things I've learned while being part of an engineering team for 4 months."
 ---
 
 Last year when I decided to study web development on my own I had no idea how much of my life would change and I'm incredibly grateful to say that it's been one of the best decisions I've made.

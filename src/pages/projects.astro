@@ -7,8 +7,8 @@ import { getCollection } from "astro:content";
 const projectsData = await getCollection("projects");
 ---
 
-<Layout title="Maru's Projects" description="Maru's Projects">
-  <Finder activePage="projects">
+<Layout>
+  <Finder>
     <Projects client:load projects={projectsData} />
   </Finder>
 </Layout>

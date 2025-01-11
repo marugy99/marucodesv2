@@ -10,7 +10,7 @@ export default function Articles({ items, view = "icon" }) {
   const [viewType, setViewType] = React.useState(view);
   return (
     <>
-      <div className="flex items-center justify-end gap-3">
+      <div className="flex items-center gap-3 sm:justify-end">
         <button
           onClick={() => setViewType("icon")}
           aria-label="View items as icons"

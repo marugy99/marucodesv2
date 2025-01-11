@@ -8,8 +8,8 @@ const about = await getEntry("misc", "about");
 const { Content } = await render(about);
 ---
 
-<Layout title="About Maru" description="About Maru">
-  <Finder activePage="about">
+<Layout>
+  <Finder>
     <Preview backLink="/" data={about.data} client:load>
       <Content slot="content" />
     </Preview>

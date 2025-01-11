@@ -1,6 +1,7 @@
 ---
 title: '"XSS attacks" a zine by Maru'
 created_at: "12/28/2023"
+description: "I made a zine about XSS attacks and HTML escaping, it’s a compilation of all the explanations that have helped me understand these two topics (with some fun drawings!)."
 ---
 
 This year I discovered zines are a great studying resource thanks to [Julia Evans](https://twitter.com/b0rk). Her [Wizard Zines](https://wizardzines.com/), are just awesome and they inspired me to make one of my own.
