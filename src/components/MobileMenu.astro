@@ -22,7 +22,7 @@ const { activePage, menuItems } = Astro.props;
     >
       {
         menuItems.map((item) => (
-          <option value={item.href} selected={activePage === item.id}>
+          <option value={item.href} selected={item.active.includes(activePage)}>
             {item.name}
           </option>
         ))
