@@ -15,7 +15,6 @@ const projects = defineCollection({
     repo: z.string(),
     stack: z.string(),
     description: z.string(),
-    link: z.string(),
     created_at: z.string(),
   }),
 });
