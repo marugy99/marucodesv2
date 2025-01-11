@@ -4,5 +4,64 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <Finder />
+  <Finder>
+    <h1 class="mt-4 text-3xl font-semibold text-slate-100">Contact</h1>
+    <form
+      class="mt-4 space-y-4 text-slate-100"
+      name="contact"
+      action="/contact"
+      method="POST"
+      data-netlify="true"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <label for="email" class="block">
+        Email
+        <input
+          class="block w-full p-2 mt-2 rounded-lg bg-slate-700"
+          type="email"
+          name="email"
+          id="email"
+          required
+        />
+      </label>
+
+      <label for="message" class="block">
+        Message
+        <textarea
+          class="block w-full p-2 mt-2 rounded-lg resize-none bg-slate-700"
+          name="message"
+          id="message"
+          rows="3"
+          required></textarea>
+      </label>
+      <button
+        type="submit"
+        class="px-4 py-2 rounded-md bg-slate-700 hover:bg-slate-600"
+      >
+        Submit
+      </button>
+    </form>
+
+    <hr class="my-6 border-slate-500" />
+
+    <h2 class="text-3xl font-semibold capitalize text-slate-100">
+      Social links
+    </h2>
+    <ul class="mt-4 space-y-1 list-disc list-inside text-slate-100">
+      <li>
+        <a
+          target="_blank"
+          class="underline decoration-wavy decoration-purple-500"
+          href="https://github.com/marugy99">GitHub</a
+        >
+      </li>
+      <li>
+        <a
+          target="_blank"
+          class="underline decoration-wavy decoration-purple-500"
+          href="https://twitter.com/marulucenat">Twitter</a
+        >
+      </li>
+    </ul>
+  </Finder>
 </Layout>
