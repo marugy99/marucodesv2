@@ -1,6 +1,7 @@
 import {
   ArrowsPointingOutIcon,
   ChevronLeftIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 import React, { useRef } from "react";
 import Draggable from "react-draggable";
@@ -24,12 +25,12 @@ export default function Preview({ data, content, backLink }) {
               <button
                 onClick={() => setFullScreen(false)}
                 aria-label="Close preview"
-                className="inline-block"
+                className="inline-block p-[2px] rounded-full bg-rose-500"
               >
-                <div className="w-3 h-3 mb-auto rounded-full bg-rose-500"></div>
+                <XMarkIcon className="w-4 h-4 text-rose-300"></XMarkIcon>
               </button>
             </div>
-            <div className="p-6 pt-3 max-h-[80vh] overflow-y-auto">
+            <div className="p-6 pt-3 max-h-[90vh] overflow-y-auto">
               <h1 className="mt-4 text-3xl font-semibold text-center max-w-[65ch]">
                 {data.title}
               </h1>

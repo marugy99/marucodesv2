@@ -38,7 +38,9 @@ export default function Articles({ items, view = "icon" }) {
       </div>
       <div
         className={
-          viewType === "icon" ? "flex flex-wrap gap-4 mt-4" : "space-y-2 mt-4"
+          viewType === "icon"
+            ? "flex flex-wrap gap-2 sm:gap-4 mt-4"
+            : "space-y-3 mt-4"
         }
       >
         {sortedItems.map((item) => (

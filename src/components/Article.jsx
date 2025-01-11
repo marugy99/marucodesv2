@@ -5,7 +5,12 @@ import { DocumentIcon } from "@heroicons/react/24/solid";
 function FileContent({ title }) {
   return (
     <>
-      <img draggable="false" src="/file-white.svg" alt="File icon"></img>
+      <img
+        draggable="false"
+        className="w-[70px] h-[70px] sm:w-[96px] sm:h-[96px] mx-auto"
+        src="/file-white.svg"
+        alt="File icon"
+      ></img>
       <span className="inline-block mt-1 text-sm text-center text-gray-100 sm:text-base max-w-[100px] truncate">
         {title}
       </span>
