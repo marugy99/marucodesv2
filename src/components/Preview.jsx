@@ -16,7 +16,7 @@ export default function Preview({ data, content, backLink }) {
         <Draggable handle="#draggableElement" nodeRef={nodeRef}>
           <article
             ref={nodeRef}
-            className="container absolute m-4 overflow-hidden text-gray-100 rounded-md shadow-md left-8 top-10 bg-slate-800 shadow-slate-600"
+            className="container w-full max-w-[60rem] absolute m-4 overflow-hidden text-gray-100 rounded-md shadow-md inset-0 mx-auto bg-slate-800 shadow-slate-600"
           >
             <div
               className="px-4 py-2 cursor-move bg-slate-700"

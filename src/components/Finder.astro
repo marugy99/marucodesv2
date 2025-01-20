@@ -11,8 +11,8 @@ const menuItems = [
 const activePage = Astro.url.pathname.split("/")[1];
 ---
 
-<section
-  class="w-full rounded-md overflow-hidden sm:grid grid-cols-[120px,1fr] md:grid-cols-[200px,1fr] shadow h-full"
+<article
+  class="sm:overflow-hidden flex-1 grid w-full max-w-[60rem] sm:grid-cols-[120px,1fr] md:grid-cols-[200px,1fr] sm:rounded-md"
 >
   <div class="hidden px-3 py-4 text-gray-100 bg-slate-800/50 sm:block">
     <div aria-hidden="true" class="flex items-center gap-2">
@@ -41,12 +41,10 @@ const activePage = Astro.url.pathname.split("/")[1];
       </ul>
     </nav>
   </div>
-  <div
-    class="h-full overflow-x-hidden overflow-y-auto text-gray-100 bg-slate-800 sm:h-auto"
-  >
+  <div class="overflow-x-hidden overflow-y-auto text-gray-100 bg-slate-800">
     <MobileMenu activePage={activePage} menuItems={menuItems} />
     <div class="p-6">
       <slot />
     </div>
   </div>
-</section>
+</article>
